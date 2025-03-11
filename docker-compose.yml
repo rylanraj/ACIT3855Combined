@@ -77,7 +77,7 @@ services:
       - "storage"
     volumes:
       - ./config:/config
-      - ./data/processing:/app/stats.json
+      - ./data/processing/stats.json:/app/stats.json
       - ./logs/processing.log:/app/app.log
 
   analyzer:
