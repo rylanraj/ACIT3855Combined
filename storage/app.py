@@ -18,7 +18,7 @@ from pykafka import KafkaClient
 from pykafka.common import OffsetType
 
 
-with open ("..config/storage_config.yml", "r") as f:
+with open ("/config/storage_config.yml", "r") as f:
     app_config = yaml.safe_load(f)
 
 datastore = app_config["datastore"]
@@ -30,7 +30,7 @@ database = datastore["db"]
 
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{hostname}:{port}/{database}")
 
-with open("..config/log_config", "r") as f:
+with open("/config/log_config", "r") as f:
     LOG_CONFIG = yaml.safe_load(f.read())
     logging.config.dictConfig(LOG_CONFIG)
 

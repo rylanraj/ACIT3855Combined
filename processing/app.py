@@ -7,12 +7,12 @@ import httpx
 import yaml
 from apscheduler.schedulers.background import BackgroundScheduler
 
-with open('..config/processing_config.yml', 'r') as f:
+with open('/config/processing_config.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
 
 logger = logging.getLogger('basicLogger')
 
-with open("../config/log_config.yml", "r") as f:
+with open("/config/log_config.yml", "r") as f:
     LOG_CONFIG = yaml.safe_load(f.read())
     logging.config.dictConfig(LOG_CONFIG)
 

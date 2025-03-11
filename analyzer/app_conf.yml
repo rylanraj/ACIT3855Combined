@@ -1,3 +1,0 @@
-kafka:
-  hostname: kafka:9092
-  topic: events
