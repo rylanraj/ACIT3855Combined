@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Stats API
+  description: This API provides statistics on temperature and humidity.
+  contact:
+    email: rylan.raj@gmail.com
+paths:
+  /stats:
+    get:
+      summary: Get statistics
+      operationId: app.get_stats
+      description: Get statistics on temperature and humidity.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/ReadingStats'
+        '400':
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    message:
+                      type: string
+components:
+  schemas:
+    ReadingStats:
+      required:
+        - num_temperature_readings
+        - num_humidity_readings
+        - max_temperature
+        - max_humidity
+      properties:
+        num_temperature_readings:
+          type: integer
+          example: 10
+        num_humidity_readings:
+          type: integer
+          example: 10
+        max_temperature:
+          type: integer
+          example: 30
+        max_humidity:
+          type: integer
+          example: 50
+      type: object

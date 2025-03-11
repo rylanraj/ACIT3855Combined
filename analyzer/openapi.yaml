@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Event API
+  version: 1.0.0
+paths:
+  /temperature:
+    get:
+      summary: Get temperature by index
+      operationId: app.get_temperature
+      parameters:
+        - name: index
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    type: string
+        '404':
+          description: Event not found
+  /humidity:
+    get:
+      summary: Get humidity by index
+      operationId: app.get_humidity
+      parameters:
+        - name: index
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    type: string
+        '404':
+          description: Event not found
+  /stats:
+    get:
+      summary: Get event statistics
+      operationId: app.get_stats
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_events:
+                    type: integer
+                  temperature_count:
+                    type: integer
+                  humidity_count:
+                    type: integer

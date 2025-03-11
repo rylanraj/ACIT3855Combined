@@ -1,0 +1,11 @@
+version: 1
+datastore:
+  filename: stats.json
+scheduler:
+  interval: 10
+
+eventstores:
+  temperature:
+    url: storage:8090/temperature
+  humidity:
+    url: storage:8090/humidity

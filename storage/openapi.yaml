@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: My API
+  description: My Description
+paths:
+  /temperature:
+    get:
+      tags:
+        - devices
+      summary: gets temperature readings
+      operationId: app.get_temperatures
+      description: Gets temperature readings added after a timestamp
+      parameters:
+        - name: start_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+        - name: end_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: Successfully returned a list of temperature events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/temperature'
+  /humidity:
+    get:
+      tags:
+        - devices
+      summary: gets humidity readings
+      operationId: app.get_humidities
+      description: Gets humidity readings added after a timestamp
+      parameters:
+        - name: start_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+        - name: end_timestamp
+          in: query
+          description: Limits the number of readings returned
+          schema:
+            type: string
+            format: date-time
+            example: 2016-08-29T09:12:33.001Z
+      responses:
+        '200':
+          description: Successfully returned a list of humidity events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/humidity'
+
+components:
+  schemas:
+    temperature:
+      title: temperature
+      type: object
+      properties:
+        device_id:
+          type: string
+          x-stoplight:
+            id: owudgm6kikkbp
+        temperature:
+          type: integer
+          x-stoplight:
+            id: fj8xwag355vzs
+        timestamp:
+          type: string
+          x-stoplight:
+            id: iwvgwcel6neqf
+        location:
+          type: string
+          x-stoplight:
+            id: sx26q7qutfbx6
+        trace_id:
+            type: integer
+    humidity:
+      title: humidity
+      type: object
+      properties:
+        device_id:
+          type: string
+          x-stoplight:
+            id: rfjedefzjyaqm
+        humidity:
+          type: integer
+          x-stoplight:
+            id: ht1h4a1ddg637
+        timestamp:
+          type: string
+          x-stoplight:
+            id: lf0vi08rwewav
+        location:
+          type: string
+          x-stoplight:
+            id: 961vz5sst1j7n
+        trace_id:
+          type: integer

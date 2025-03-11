@@ -1,0 +1,7 @@
+__pycache__
+.venv
+.idea
+analyzer/.venv
+processing/.venv
+receiver/.venv
+storage/.venv
