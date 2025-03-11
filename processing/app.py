@@ -37,6 +37,8 @@ def populate_stats():
         logger.info("JSON Data store not found. Using default values.")
 
     current_time = datetime.now().isoformat()
+    # Print the current time
+    logger.info(f"The current time is: {current_time}")
     # Get the last updated timestamp
     last_updated_str = stats.get("last_updated", (datetime.now() - timedelta(days=1)).isoformat())
     start_timestamp = last_updated_str
