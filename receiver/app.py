@@ -8,12 +8,12 @@ import logging, logging.config
 from pykafka import KafkaClient
 
 
-with open('/config/receiver_config.yml', 'r') as f:
+with open('./receiver_config.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
 
 logger = logging.getLogger('basicLogger')
 
-with open("/config/log_config.yml", "r") as f:
+with open("./log_config.yml", "r") as f:
     LOG_CONFIG = yaml.safe_load(f.read())
     logging.config.dictConfig(LOG_CONFIG)
 

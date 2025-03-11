@@ -49,8 +49,8 @@ services:
     depends_on:
       - "kafka"
     volumes:
-      - ./config/receiver_config.yml:/config/receiver_config.yml
-      - ./config/log_config.yml:/config/log_config.yml
+      - ./config/receiver_config.yml:/app/receiver_config.yml
+      - ./config/log_config.yml:/app/log_config.yml
       - ./logs/receiver.log:/app/app.log
 
   storage:
@@ -64,9 +64,9 @@ services:
       - "db"
       - "kafka"
     volumes:
-      - ./config/storage_config.yml:/config/storage_config.yml
+      - ./config/storage_config.yml:/app/storage_config.yml
       - ./logs/storage.log:/app/app.log
-      - ./config/log_config.yml:/config/log_config.yml
+      - ./config/log_config.yml:/app/log_config.yml
 
   processing:
     build: ./processing
@@ -78,8 +78,8 @@ services:
     depends_on:
       - "storage"
     volumes:
-      - ./config/processing_config.yml:/config/processing_config.yml
-      - ./config/log_config.yml:/config/log_config.yml
+      - ./config/processing_config.yml:/app/processing_config.yml
+      - ./config/log_config.yml:/app/log_config.yml
       - ./data/processing/stats.json:/app/stats.json
       - ./logs/processing.log:/app/app.log
 
@@ -94,7 +94,7 @@ services:
       - "kafka"
     volumes:
       - ./config/analyzer_config.yml:/app/analyzer_config.yml
-      - ./config/log_config.yml:/config/log_config.yml
+      - ./config/log_config.yml:/app/log_config.yml
       - ./logs/analyzer.log:/app/app.log
 
 
