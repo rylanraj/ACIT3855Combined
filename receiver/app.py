@@ -13,7 +13,7 @@ with open('/config/receiver_config.yml', 'r') as f:
 
 logger = logging.getLogger('basicLogger')
 
-with open("/config/log_conf.yml", "r") as f:
+with open("/config/log_config.yml", "r") as f:
     LOG_CONFIG = yaml.safe_load(f.read())
     logging.config.dictConfig(LOG_CONFIG)
 
