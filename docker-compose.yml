@@ -7,7 +7,7 @@ services:
     image: wurstmeister/kafka
     command: [start-kafka.sh]
     ports:
-      - "9092:9092"
+      - "9092"
     environment:
       KAFKA_CREATE_TOPICS: "events:1:1" # topic:partition:replicas
       KAFKA_ADVERTISED_HOST_NAME: kafka # docker-machine ip
@@ -57,7 +57,7 @@ services:
     build: ./storage
     restart: always
     ports:
-      - "8090:8090"
+      - "8090"
     networks:
       - rylan
     depends_on:
