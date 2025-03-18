@@ -1,5 +1,5 @@
 - name: Git pull on AWS t3.medium instance
-  hosts: aws_t3_medium
+  hosts: web
   become: yes  # Change to 'yes' if you need sudo privileges
 
   vars:
