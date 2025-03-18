@@ -1,0 +1,17 @@
+- name: Git pull on AWS t3.medium instance
+  hosts: aws_t3_medium
+  become: yes  # Change to 'yes' if you need sudo privileges
+
+  vars:
+    git_repo_dir: "/home/ubuntu/ACIT3855Combined"  # Replace with your actual repository path
+
+  tasks:
+    - name: Run git pull in repository directory
+      command: git pull
+      args:
+        chdir: "{{ git_repo_dir }}"
+      register: git_result
+
+    - name: Show git pull result
+      debug:
+        var: git_result.stdout_lines
