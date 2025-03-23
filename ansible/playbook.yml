@@ -15,3 +15,9 @@
     - name: Show git pull result
       debug:
         var: git_result.stdout_lines
+
+    - name: Run docker compose up
+      command: docker compose up --build -d
+      args:
+        chdir: "{{ git_repo_dir }}"
+      register: docker_result
