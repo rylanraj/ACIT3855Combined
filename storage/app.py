@@ -79,6 +79,7 @@ def get_humidities(session, start_timestamp, end_timestamp):
 @use_db_session
 def process_messages(session):
     """ Process event messages """
+    logger.info("Connecting to Kafka")
     event_hostname = app_config["events"]["hostname"]
     event_port = app_config["events"]["port"]
     hostname = f"{event_hostname}:{event_port}" # localhost:9092
