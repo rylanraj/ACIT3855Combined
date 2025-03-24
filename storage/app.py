@@ -57,7 +57,7 @@ def get_temperatures(session, start_timestamp, end_timestamp):
     start = datetime.fromisoformat(start_timestamp)
     end = datetime.fromisoformat(end_timestamp)
 
-    statement = sqlalchemy.select(TemperatureReport).where(TemperatureReport.timestamp >= start).where(TemperatureReport.timestamp < end)
+    statement = sqlalchemy.select(TemperatureReport).where(TemperatureReport.date_created >= start).where(TemperatureReport.date_created < end)
     results = [result.to_dict() for result in session.execute(statement).scalars().all()]
 
     logger.info("Found %d temperature readings (start: %s, end: %s)", len(results), start, end)
@@ -69,7 +69,7 @@ def get_humidities(session, start_timestamp, end_timestamp):
     start = datetime.fromisoformat(start_timestamp)
     end = datetime.fromisoformat(end_timestamp)
 
-    statement = sqlalchemy.select(HumidityReport).where(HumidityReport.timestamp >= start).where(HumidityReport.timestamp < end)
+    statement = sqlalchemy.select(HumidityReport).where(HumidityReport.date_created >= start).where(HumidityReport.date_created < end)
     results = [result.to_dict() for result in session.execute(statement).scalars().all()]
 
     logger.info("Found %d humidity readings (start: %s, end: %s)", len(results), start, end)
