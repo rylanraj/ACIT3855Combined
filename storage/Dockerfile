@@ -8,8 +8,6 @@ WORKDIR /app
 RUN pip3 install -r requirements.txt
 # Copy the source code
 COPY . /app
-# Run manage.py create
-RUN python3 manage.py create
 # Change permissions and become a non-privileged user
 RUN chown -R nobody:nogroup /app
 USER nobody
