@@ -16,5 +16,5 @@ EXPOSE 8090
 # Entrypoint = run Python
 ENTRYPOINT [ "python3" ]
 # Default = run app.py
-CMD [ "app.py" ]
 CMD [ "manage.py" ]
+CMD [ "app.py" ]

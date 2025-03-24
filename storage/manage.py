@@ -12,9 +12,17 @@ def drop_db():
 
 # Make the script take an argument to specify the action
 if __name__ == "__main__":
-    create_db()
     import sys
+
+    if len(sys.argv) != 2:
+        print("Usage: manage.py [create|drop]")
+        sys.exit(1)
+
     action = sys.argv[1]
-    if action == "drop":
-        print("Dropping tables")
+    if action == "create":
+        create_db()
+    elif action == "drop":
         drop_db()
+    else:
+        print("Usage: manage.py [create|drop]")
+        sys.exit(1)
