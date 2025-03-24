@@ -120,6 +120,7 @@ def process_messages(session):
             session.add(obj)
         # Commit the new message as being read
         session.commit()
+        logger.info("Stored event %s with trace ID %s" % (msg["type"], payload["trace_id"]))
 
 def setup_kafka_thread():
     t1 = Thread(target=process_messages)
