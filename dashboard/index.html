@@ -9,19 +9,23 @@
 </head>
 <body>
 <h1>Stats from Processing Service</h1>
+<div id="processing-stats"></div>
+<h1>Stats from Analyzer Service</h1>
+<div id="analyzer-stats"></div>
+
 <script>
     fetch('http://44.248.28.104:8100/stats')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            const processingStatsDiv = document.getElementById('processing-stats');
+            processingStatsDiv.innerHTML = JSON.stringify(data, null, 2);
         });
-</script>
-<h1>Stats from Analyzer Service</h1>
-<script>
+
     fetch('http://44.248.28.104:8110/stats')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            const analyzerStatsDiv = document.getElementById('analyzer-stats');
+            analyzerStatsDiv.innerHTML = JSON.stringify(data, null, 2);
         });
 </script>
 </body>
