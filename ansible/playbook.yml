@@ -1,29 +1,56 @@
-- name: Git pull on AWS t3.medium instance
+- name: Git pull and restart Docker on AWS t3.medium instance
   hosts: web
-  become: yes  # Change to 'yes' if you need sudo privileges
-
+  become: yes
   vars:
-    git_repo_dir: "/home/ubuntu/ACIT3855Combined"  # Replace with your actual repository path
+    git_repo_dir: "/home/ubuntu/ACIT3855Combined"
+    log_dir: "{{ git_repo_dir }}/logs"
+    log_files:
+      - analyzer.log
+      - processing.log
+      - receiver.log
+      - storage.log
 
   tasks:
-    - name: Run git pull in repository directory
-      command: git pull
-      args:
-        chdir: "{{ git_repo_dir }}"
-      register: git_result
+    - name: Ensure required packages are installed
+      apt:
+        name: git
+        state: present
 
-    - name: Show git pull result
-      debug:
-        var: git_result.stdout_lines
+    - name: Pull latest code from Git
+      git:
+        repo: "https://github.com/rylanraj/ACIT3855Combined.git"
+        dest: "{{ git_repo_dir }}"
+        version: main
+        update: yes
+      become_user: ubuntu
 
-    - name: Run docker compose down
-      command: docker compose down --volumes
-      args:
-        chdir: "{{ git_repo_dir }}"
-      register: docker_result
+    - name: Stop running containers
+      community.docker.docker_compose:
+        project_src: "{{ git_repo_dir }}"
+        state: absent
+        remove_volumes: true
 
-    - name: Run docker compose up
-      command: docker compose up --build -d
-      args:
-        chdir: "{{ git_repo_dir }}"
-      register: docker_result
+    - name: Remove old logs
+      file:
+        path: "{{ log_dir }}"
+        state: absent
+
+    - name: Recreate logs directory
+      file:
+        path: "{{ log_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create log files and set permissions
+      file:
+        path: "{{ log_dir }}/{{ item }}"
+        state: touch
+        mode: '0666'
+      loop: "{{ log_files }}"
+
+    - name: Start Docker containers
+      community.docker.docker_compose:
+        project_src: "{{ git_repo_dir }}"
+        build: yes
+        state: present
+        restarted: yes

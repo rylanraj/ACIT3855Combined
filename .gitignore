@@ -6,3 +6,4 @@ processing/.venv
 receiver/.venv
 storage/.venv
 auto-deployACIT3855.sh
+logs
