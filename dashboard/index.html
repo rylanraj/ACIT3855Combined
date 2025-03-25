@@ -8,6 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Hello World</h1>
+<h1>Stats from Processing Service</h1>
+<script>
+    fetch('http://processing:8100/stats')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+</script>
+<h1>Stats from Analyzer Service</h1>
+<script>
+    fetch('http://analyzer:8110/stats')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+</script>
 </body>
 </html>
