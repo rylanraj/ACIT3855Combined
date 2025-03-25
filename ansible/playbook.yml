@@ -22,7 +22,6 @@
         dest: "{{ git_repo_dir }}"
         version: main
         update: yes
-      become_user: ubuntu
 
     - name: Stop running containers
       community.docker.docker_compose:
@@ -33,6 +32,11 @@
     - name: Remove old logs
       file:
         path: "{{ log_dir }}"
+        state: absent
+
+    - name: Remove old stats.json
+      file:
+        path: "{{ git_repo_dir }}/data/processing/stats.json"
         state: absent
 
     - name: Recreate logs directory
@@ -48,9 +52,18 @@
         mode: '0666'
       loop: "{{ log_files }}"
 
-    - name: Start Docker containers
-      community.docker.docker_compose:
-        project_src: "{{ git_repo_dir }}"
-        build: yes
-        state: present
-        restarted: yes
+    - name: Run docker compose up
+      command: docker compose up --build -d
+      args:
+        chdir: "{{ git_repo_dir }}"
+      register: docker_result
+
+    - name: Wait 15 seconds for containers to start
+      pause:
+        seconds: 15
+
+    - name: Create tables in storage
+      command: docker compose exec storage python manage.py create
+      args:
+        chdir: "{{ git_repo_dir }}"
+      register: docker_result
