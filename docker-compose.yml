@@ -97,6 +97,7 @@ services:
       - ./logs/analyzer.log:/app/app.log
 
   nginx:
+    build: ./dashboard
     image: nginx
     ports:
       - "80:80"
