@@ -96,6 +96,13 @@ services:
       - ./config/log_config.yml:/app/log_config.yml
       - ./logs/analyzer.log:/app/app.log
 
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./dashboard/index.html:/usr/share/nginx/html/index.html
+
 
 networks:
   rylan:
