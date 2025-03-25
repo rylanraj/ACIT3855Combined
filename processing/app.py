@@ -37,6 +37,8 @@ def populate_stats():
             stats = json.load(f)
     except FileNotFoundError:
         logger.info("JSON Data store not found. Using default values.")
+    except json.JSONDecodeError:
+        logger.error("Error reading JSON Data store. Using default values.")
 
     current_time = datetime.now().isoformat()
     # Print the current time

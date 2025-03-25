@@ -39,6 +39,11 @@
         path: "{{ git_repo_dir }}/data/processing/stats.json"
         state: absent
 
+    - name: Recreate stats.json
+      file:
+        path: "{{ git_repo_dir }}/data/processing/stats.json"
+        state: touch
+
     - name: Recreate logs directory
       file:
         path: "{{ log_dir }}"
