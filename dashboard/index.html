@@ -27,6 +27,19 @@
 }
 getTemperature()">Get Temperature</button>
 <h1>Get single humidity from Analyzer</h1>
+<label for="humidity-index">Index</label><input type="number" id="humidity-index" placeholder="Enter humidity id">
+<div id="humidity"></div>
+<button onclick="function getHumidity() {
+    const hostname = 'http://44.248.28.104'
+    const index = document.getElementById('humidity-index').value;
+    fetch(`${hostname}:8110/humidity?index=${index}`)
+        .then(response => response.json())
+        .then(data => {
+            const humidityDiv = document.getElementById('humidity');
+            humidityDiv.innerHTML = JSON.stringify(data, null, 2);
+        });
+}
+getHumidity()">Get Humidity</button>
 
 <script>
     const hostname = 'http://44.248.28.104'
