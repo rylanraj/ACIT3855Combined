@@ -7,4 +7,4 @@ receiver/.venv
 storage/.venv
 auto-deployACIT3855.sh
 logs
-data/processing/stats.json
+data
