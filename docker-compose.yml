@@ -102,6 +102,8 @@ services:
       - "80:80"
     volumes:
       - ./dashboard/index.html:/usr/share/nginx/html/index.html
+    networks:
+        - rylan
 
 
 networks:
