@@ -10,7 +10,7 @@
 <body>
 <h1>Stats from Processing Service</h1>
 <script>
-    fetch('http://44.248.28.104/8100/stats')
+    fetch('http://44.248.28.104:8100/stats')
         .then(response => response.json())
         .then(data => {
             console.log(data);
