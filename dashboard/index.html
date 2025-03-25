@@ -16,8 +16,9 @@
 <label for="temperature-index">Index</label><input type="number" id="temperature-index" placeholder="Enter temperature id">
 <div id="temperature"></div>
 <button onclick="function getTemperature() {
+    const hostname = 'http://44.248.28.104'
     const index = document.getElementById('temperature-index').value;
-    fetch(`${hostname}:8110/temperature/${index}`)
+    fetch(`${hostname}:8110/temperature?index=${index}`)
         .then(response => response.json())
         .then(data => {
             const temperatureDiv = document.getElementById('temperature');
