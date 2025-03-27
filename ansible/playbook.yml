@@ -65,10 +65,16 @@
 
     - name: Wait 15 seconds for containers to start
       pause:
-        seconds: 15
+        seconds: 20
 
     - name: Create tables in storage
       command: docker compose exec storage python manage.py create
+      args:
+        chdir: "{{ git_repo_dir }}"
+      register: docker_result
+
+    - name: Restart storage container
+      command: docker compose restart storage
       args:
         chdir: "{{ git_repo_dir }}"
       register: docker_result

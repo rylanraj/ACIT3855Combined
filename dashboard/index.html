@@ -16,7 +16,7 @@
 <label for="temperature-index">Index</label><input type="number" id="temperature-index" placeholder="Enter temperature id">
 <div id="temperature"></div>
 <button onclick="function getTemperature() {
-    const hostname = 'http://44.244.63.222'
+    const hostname = 'http://54.213.124.23'
     const index = document.getElementById('temperature-index').value;
     fetch(`${hostname}:8110/temperature?index=${index}`)
         .then(response => response.json())
@@ -30,7 +30,7 @@ getTemperature()">Get Temperature</button>
 <label for="humidity-index">Index</label><input type="number" id="humidity-index" placeholder="Enter humidity id">
 <div id="humidity"></div>
 <button onclick="function getHumidity() {
-    const hostname = 'http://44.244.63.222'
+    const hostname = 'http://54.213.124.23'
     const index = document.getElementById('humidity-index').value;
     fetch(`${hostname}:8110/humidity?index=${index}`)
         .then(response => response.json())
@@ -42,7 +42,7 @@ getTemperature()">Get Temperature</button>
 getHumidity()">Get Humidity</button>
 
 <script>
-    const hostname = 'http://44.244.63.222'
+    const hostname = 'http://54.213.124.23'
     fetch(`${hostname}:8100/stats`)
         .then(response => response.json())
         .then(data => {
