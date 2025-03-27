@@ -39,10 +39,20 @@
         path: "{{ git_repo_dir }}/data/processing/stats.json"
         state: absent
 
+    - name: Remove old MySQL Data
+      file:
+        path: "{{ git_repo_dir }}/data/database/mysql"
+        state: absent
+
     - name: Recreate stats.json
       file:
         path: "{{ git_repo_dir }}/data/processing/stats.json"
         state: touch
+
+    - name: Recreate MySQL Data
+      file:
+        path: "{{ git_repo_dir }}/data/database/mysql"
+        state: directory
 
     - name: Recreate logs directory
       file:
