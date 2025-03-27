@@ -21,6 +21,7 @@
         repo: "https://github.com/rylanraj/ACIT3855Combined.git"
         dest: "{{ git_repo_dir }}"
         version: main
+        force: true
         update: yes
 
     - name: Stop running containers
