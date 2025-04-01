@@ -133,4 +133,4 @@ app.add_api("openapi.yaml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
     setup_kafka_thread()
-    app.run(port=8090, host="0.0.0.0")
+    app.run(port=8090, host="0.0.0.0", base_path="/storage")

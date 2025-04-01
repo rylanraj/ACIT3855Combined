@@ -6,6 +6,6 @@ scheduler:
 
 eventstores:
   temperature:
-    url: http://storage:8090/temperature
+    url: http://storage/storage/temperature
   humidity:
-    url: http://storage:8090/humidity
+    url: http://storage/storage/humidity
