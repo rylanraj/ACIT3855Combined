@@ -42,7 +42,7 @@ services:
     build: ./receiver
     restart: always
     ports:
-      - "8080:8080"
+      - "8080"
     networks:
       - rylan
     depends_on:
@@ -69,9 +69,11 @@ services:
 
   processing:
     build: ./processing
+    environment:
+      - CORS_ALLOW_ALL=no
     restart: always
     ports:
-      - "8100:8100"
+      - "8100"
     networks:
       - rylan
     depends_on:
@@ -84,9 +86,11 @@ services:
 
   analyzer:
     build: ./analyzer
+    environment:
+      - CORS_ALLOW_ALL=no
     restart: always
     ports:
-      - "8110:8110"
+      - "8110"
     networks:
       - rylan
     depends_on:
