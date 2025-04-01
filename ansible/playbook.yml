@@ -89,3 +89,9 @@
       args:
         chdir: "{{ git_repo_dir }}"
       register: docker_result
+
+    - name: Restart nginx
+      command: docker compose restart nginx
+      args:
+          chdir: "{{ git_repo_dir }}"
+      register: docker_result
