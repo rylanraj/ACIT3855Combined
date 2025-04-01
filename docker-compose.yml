@@ -34,7 +34,7 @@ services:
       - '3306'
     volumes:
       # Where our data will be persisted
-      - ./data/database/mysql:/var/lib/mysql
+      - my-db:/var/lib/mysql
     networks:
       - rylan
 
