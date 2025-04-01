@@ -103,6 +103,10 @@ services:
       - "80:80"
     networks:
       - rylan
+    depends_on:
+      - "receiver"
+      - "analyzer"
+      - "processing"
 
 
 networks:
