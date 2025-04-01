@@ -1,9 +1,15 @@
 services:
   zookeeper:
+    expose:
+      - "2181"
+      - "2888"
+      - "3888"
     image: wurstmeister/zookeeper
     networks:
         - rylan
   kafka:
+    expose:
+        - "9092"
     image: wurstmeister/kafka
     command: [start-kafka.sh]
     environment:
@@ -37,6 +43,8 @@ services:
       - rylan
 
   receiver:
+    expose:
+      - "8080"
     deploy:
       replicas: 3
     build: ./receiver
@@ -51,6 +59,8 @@ services:
       - ./logs/receiver.log:/app/app.log
 
   storage:
+    expose:
+      - "8090"
     build: ./storage
     restart: always
     networks:
