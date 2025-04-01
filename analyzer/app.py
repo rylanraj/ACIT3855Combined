@@ -74,7 +74,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_api("openapi.yaml", strict_validation=True, validate_responses=True)
+app.add_api("openapi.yaml", strict_validation=True, validate_responses=True, base_path="/analyzer")
 
 if __name__ == "__main__":
-    app.run(port=8110, host="0.0.0.0", base_path="/analyzer")
+    app.run(port=8110, host="0.0.0.0")

@@ -130,8 +130,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_api("openapi.yaml", strict_validation=True, validate_responses=True)
+app.add_api("openapi.yaml", strict_validation=True, validate_responses=True, base_path="/processing")
 
 if __name__ == "__main__":
     init_scheduler()
-    app.run(port=8100, host="0.0.0.0", base_path="/processing")
+    app.run(port=8100, host="0.0.0.0")

@@ -72,7 +72,7 @@ def post_api_weather_humidity(body):
 
 # Define all required functions
 app = connexion.FlaskApp(__name__, specification_dir='')
-app.add_api("openapi.yaml", strict_validation=True, validate_responses=True)
+app.add_api("openapi.yaml", strict_validation=True, validate_responses=True, base_path="/receiver")
 
 if __name__ == "__main__":
-    app.run(port=8080, host="0.0.0.0", base_path="/receiver")
+    app.run(port=8080, host="0.0.0.0")

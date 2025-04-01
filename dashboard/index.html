@@ -25,7 +25,7 @@
     const hostname = 'http://54.212.102.78';
 
     function fetchProcessingStats() {
-        fetch(`${hostname}/processing/stats`)
+        fetch(`/processing/stats`)
             .then(response => response.json())
             .then(data => {
                 const processingStatsDiv = document.getElementById('processing-stats');
@@ -34,7 +34,7 @@
     }
 
     function fetchAnalyzerStats() {
-        fetch(`${hostname}/analyzer/stats`)
+        fetch(`/analyzer/stats`)
             .then(response => response.json())
             .then(data => {
                 const analyzerStatsDiv = document.getElementById('analyzer-stats');
