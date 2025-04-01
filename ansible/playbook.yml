@@ -74,7 +74,7 @@
         chdir: "{{ git_repo_dir }}"
       register: docker_result
 
-    - name: Wait 15 seconds for containers to start
+    - name: Wait 20 seconds for containers to start
       pause:
         seconds: 20
 
