@@ -28,7 +28,12 @@ hostname = datastore["hostname"]
 port = datastore["port"]
 database = datastore["db"]
 
-engine = create_engine(f"mysql+pymysql://{user}:{password}@{hostname}:{port}/{database}")
+engine = create_engine(
+    f"mysql+pymysql://{user}:{password}@{hostname}:{port}/{database}",
+    pool_size=10,
+    pool_recycle=3600,
+    pool_pre_ping=True
+)
 
 with open("./log_config.yml", "r") as f:
     LOG_CONFIG = yaml.safe_load(f.read())
