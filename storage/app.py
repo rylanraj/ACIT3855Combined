@@ -31,7 +31,7 @@ database = datastore["db"]
 engine = create_engine(
     f"mysql+pymysql://{user}:{password}@{hostname}:{port}/{database}",
     pool_size=20,
-    pool_recycle=3600,
+    pool_recycle=1800,
     pool_pre_ping=True
 )
 
