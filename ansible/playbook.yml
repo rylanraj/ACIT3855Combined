@@ -56,6 +56,11 @@
         path: "{{ git_repo_dir }}/data/database/mysql"
         state: directory
 
+    - name: Recreate anomaly.json
+      file:
+        path: "{{ git_repo_dir }}/data/anomaly_detector/anomaly.json"
+        state: touch
+
     - name: Recreate logs directory
       file:
         path: "{{ log_dir }}"
