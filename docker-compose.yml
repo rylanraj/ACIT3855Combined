@@ -114,6 +114,21 @@ services:
       - "analyzer"
       - "processing"
 
+  anomaly_detector:
+    build: ./anomaly_detector
+    environment:
+      - TEMPERATURE_MAX=5
+      - HUMIDITY_MIN=8
+    restart: always
+    networks:
+      - rylan
+    depends_on:
+      - "kafka"
+    volumes:
+      - ./config/anomaly_detector_config.yml:/app/anomaly_detector_config.yml
+      - ./config/log_config.yml:/app/log_config.yml
+      - ./logs/anomaly_detector.log:/app/app.log
+
 
 networks:
   rylan:
