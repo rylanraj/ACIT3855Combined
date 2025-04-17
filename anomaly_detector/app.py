@@ -1,4 +1,6 @@
 import json
+from json import JSONDecodeError
+
 import connexion
 import yaml
 import logging, logging.config
@@ -79,9 +81,12 @@ def get_anomalies(event_type=None):
             else:
                 return {"message": "No temperature anomalies detected!"}, 404
     else:
-        with open("anomaly.json", "r") as f:
-            anomaly = json.load(f)
-            return anomaly, 200
+        try:
+            with open("anomaly.json", "r") as f:
+                anomaly = json.load(f)
+                return anomaly, 200
+        except JSONDecodeError:
+            return {"message": "No anomalies detected!"}, 404
 
 
 # Define all required functions
