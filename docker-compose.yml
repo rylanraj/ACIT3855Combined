@@ -128,6 +128,7 @@ services:
       - ./config/anomaly_detector_config.yml:/app/anomaly_detector_config.yml
       - ./config/log_config.yml:/app/log_config.yml
       - ./logs/anomaly_detector.log:/app/app.log
+      - ./data/anomaly_detector/anomalies.json:/app/anomalies.json
 
 
 networks:
